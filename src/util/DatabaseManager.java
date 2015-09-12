@@ -64,6 +64,17 @@ public class DatabaseManager {
 		}
 		return ret;
 	}
+	public void setUndefinedOwner(String ownerName){
+		String sql = "UPDATE " + Configuration.getPropertyTableName() +
+					" SET OWNERID=" + Configuration.getUndefinedOwnerId() +
+					" WHERE OWNERID=" + getOwnerId(ownerName) + ";";
+		connection.insertOrDelete(sql);
+	}
+	public void deleteOwnerProperties(String ownerName){
+		String sql = "DELETE from " + Configuration.getPropertyTableName() +
+		" WHERE OWNERID="+ getOwnerId(ownerName) + ";";
+		connection.insertOrDelete(sql);
+	}
 	public List<String> getOwnerProperties(String ownerName){
 		List<String> resultList = new ArrayList<String>();
 		String sql = "SELECT NAME from " + Configuration.getPropertyTableName() + 

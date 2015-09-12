@@ -37,8 +37,9 @@ public class ApplicationManager {
 			guiManager.displayWrongOwnerName();
 		}
 	}
-	public void deleteOwner(String name){
-		ownerManager.deleteOwner(name);
+	public void deleteOwner(String ownerName){
+		dbManager.deleteOwner(ownerName);
+		dbManager.deleteOwnerProperties(ownerName);
 		guiManager.populateOwnerList(ownerManager.getOwnerNames());
 	}
 	public void addProperty(String name,String ownerName){

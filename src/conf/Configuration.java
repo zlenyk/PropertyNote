@@ -21,5 +21,11 @@ public class Configuration {
 		return propertyTableName;
 	}
 	
+	private static int undefinedOwnerId = 1000;
+	public static int getUndefinedOwnerId() {
+		return undefinedOwnerId;
+	}
+	
+	
 	
 }
