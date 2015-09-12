@@ -46,6 +46,10 @@ public class ApplicationManager {
 		dbManager.addProperty(name, ownerName);
 		guiManager.populatePropertyList(dbManager.getOwnerProperties(ownerName));
 	}
+	public void deleteProperty(String propertyName,String ownerName){
+		dbManager.deleteProperty(ownerName, propertyName);
+		guiManager.populatePropertyList(dbManager.getOwnerProperties(ownerName));
+	}
 	public List<String> getOwnerPropertyList(String ownerName){
 		return dbManager.getOwnerProperties(ownerName);
 	}

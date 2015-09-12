@@ -43,6 +43,12 @@ public class DatabaseManager {
 					" WHERE NAME='" + ownerName + "';";
 		connection.insertOrDelete(sql);
 	}
+	public void deleteProperty(String ownerName,String propertyName){
+		String sql = "DELETE from " + Configuration.getPropertyTableName() +
+				" WHERE NAME='" + propertyName + "'" + 
+				"AND OWNERID="+ getOwnerId(ownerName) + ";";
+		connection.insertOrDelete(sql);
+	}
 	private int getOwnerId(String ownerName){
 		String sql = "SELECT ID FROM " + Configuration.getOwnerTableName() +
 				" WHERE NAME='" + ownerName + "';";

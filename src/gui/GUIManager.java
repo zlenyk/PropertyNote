@@ -86,6 +86,9 @@ public class GUIManager {
 	protected void addProperty(String name,String ownerName){
 		appManager.addProperty(name, ownerName);
 	}
+	protected void deleteProperty(String name,String ownerName){
+		appManager.deleteProperty(name, ownerName);
+	}
 	protected void closeApplication(){
 		appManager.close();
 	}

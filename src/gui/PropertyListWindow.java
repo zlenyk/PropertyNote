@@ -38,17 +38,22 @@ public class PropertyListWindow extends ChildWindow {
 		mainFrame.getContentPane().add(propertyList);
 		
 		JButton btnAdd = new JButton("Add");
+		btnAdd.setBounds(271, 35, 117, 25);
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				guiManager.displayAddPropertyWindow(ownerName);
 			}
 		});
-		btnAdd.setBounds(271, 35, 117, 25);
 		mainFrame.getContentPane().add(btnAdd);
 		
 		btnDelete = new JButton("Delete");
 		btnDelete.setEnabled(false);
 		btnDelete.setBounds(271, 72, 117, 25);
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				guiManager.deleteProperty(propertyList.getSelectedValue(),ownerName);
+			}
+		});
 		mainFrame.getContentPane().add(btnDelete);
 	}
 	public void populatePropertyList(List<String> owners){
