@@ -1,22 +1,24 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 public class PropertyListWindow extends ChildWindow {
 
 	private String ownerName;
-	private JList<String> propertyList;
-	private DefaultListModel<String> dlm;
 	private JButton btnDelete;
+	private JPanel propertiesPanel;
+	private PropertyComponent clickedProperty;
 	/**
 	 * Create the frame.
 	 */
@@ -24,18 +26,13 @@ public class PropertyListWindow extends ChildWindow {
 		super(gui,parent);
 		
 		ownerName = _ownerName;
-		mainFrame.setTitle("Show properties");
-		
+		setTitle("Show properties");
+		setBounds(100, 100, 600, 600);
+
 		JLabel ownerLabel = new JLabel("New label");
 		ownerLabel.setBounds(12, 12, 70, 15);
 		ownerLabel.setText(ownerName);
-		mainFrame.getContentPane().add(ownerLabel);
-		
-		dlm = new DefaultListModel<String>();
-		propertyList = new JList<String>(dlm);
-		propertyList.getSelectionModel().addListSelectionListener(new SelectionListener());
-		propertyList.setBounds(22, 39, 237, 202);
-		mainFrame.getContentPane().add(propertyList);
+		getContentPane().add(ownerLabel,BorderLayout.NORTH);
 		
 		JButton btnAdd = new JButton("Add");
 		btnAdd.setBounds(271, 35, 117, 25);
@@ -44,32 +41,39 @@ public class PropertyListWindow extends ChildWindow {
 				guiManager.displayAddPropertyWindow(ownerName);
 			}
 		});
-		mainFrame.getContentPane().add(btnAdd);
+		buttonPanel.add(btnAdd);
 		
 		btnDelete = new JButton("Delete");
 		btnDelete.setEnabled(false);
 		btnDelete.setBounds(271, 72, 117, 25);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				guiManager.deleteProperty(propertyList.getSelectedValue(),ownerName);
+				guiManager.deleteProperty(clickedProperty.getName(),ownerName);
 			}
 		});
-		mainFrame.getContentPane().add(btnDelete);
+		buttonPanel.add(btnDelete);
+		
+		propertiesPanel = new JPanel( new FlowLayout());
+		propertiesPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		propertiesPanel.setBounds(12, 40, 310, 291);
+		propertiesPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		getContentPane().add(propertiesPanel,BorderLayout.CENTER);
+		
+		validate();
 	}
+	public void setClickedProperty(PropertyComponent p){
+		clickedProperty = p;
+		btnDelete.setEnabled(true);
+	}
+	
 	public void populatePropertyList(List<String> owners){
-		dlm.clear();
+		propertiesPanel.removeAll();
+		revalidate();
 		if(owners.size() > 0){
 			for(String name : owners){
-				dlm.addElement(name);
+				propertiesPanel.add(new PropertyComponent(name,ownerName,this));
 			}
-			propertyList.repaint();
 		}
-	}
-	private class SelectionListener implements ListSelectionListener{
-		@Override
-		public void valueChanged(ListSelectionEvent arg0) {
-			if(propertyList.getSelectedValue() != null)
-				btnDelete.setEnabled(true);
-		}
+		validate();
 	}
 }

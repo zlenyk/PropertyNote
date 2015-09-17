@@ -10,7 +10,7 @@ public class AddOwnerWindow extends AddWindow {
 	 */
 	public AddOwnerWindow(GUIManager _guiManager,Window _parent) {
 		super(_guiManager,_parent);
-		mainFrame.setTitle("Add owner");
+		setTitle("Add owner");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				guiManager.addOwner(name.getText());

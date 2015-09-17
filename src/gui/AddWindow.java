@@ -16,7 +16,7 @@ public class AddWindow extends ChildWindow{
 	public AddWindow(GUIManager _guiManager,Window _parent) {
 		super(_guiManager,_parent);
 		
-		mainFrame.setBounds(100, 100, 268, 124);
+		setBounds(100, 100, 268, 124);
 		
 		name = new JTextField();
 		name.setBounds(0, 21, 151, 19);

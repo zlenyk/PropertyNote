@@ -11,7 +11,7 @@ public class AddPropertyWindow extends AddWindow{
 	public AddPropertyWindow(GUIManager _guiManager,Window _parent,String _ownerName) {
 		super(_guiManager,_parent);
 		ownerName = _ownerName;
-		mainFrame.setTitle("Add property");
+		setTitle("Add property");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				guiManager.addProperty(name.getText(),ownerName);

@@ -3,29 +3,28 @@ package gui;
 import javax.swing.JFrame;
 
 
-public abstract class Window {
+public abstract class Window extends JFrame{
 	
-	protected JFrame mainFrame;
 	protected Window parent;
-	protected Window myself;
+	final protected Window myself;
 
 	public Window(){
-		mainFrame = new JFrame();
 		myself = this;
 	}
 	public void displayWindow(){
 		if(parent != null)
-			parent.getFrame().setVisible(false);
+			parent.setVisible(false);
 		
-		getFrame().setVisible(true);
+		setVisible(true);
 	}
 	public void closeWindow(){
 		if(parent != null)
-			parent.getFrame().setVisible(true);
+			parent.setVisible(true);
 		
-		getFrame().dispose();
+		dispose();
 	}
-	public JFrame getFrame(){
+/*	public JFrame getFrame(){
 		return mainFrame;
 	}
+*/
 }

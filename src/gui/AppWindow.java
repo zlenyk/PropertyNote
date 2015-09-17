@@ -38,21 +38,20 @@ public class AppWindow extends Window{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		mainFrame = new JFrame();
-		mainFrame.setTitle(Configuration.getAppName());
-		mainFrame.setBounds(100, 100, 450, 300);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.getContentPane().setLayout(null);
+		setTitle(Configuration.getAppName());
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 
 		dlm = new DefaultListModel<String>();
 		ownerList = new JList<String>(dlm);
 		ownerList.getSelectionModel().addListSelectionListener(new SelectionListener());
 		ownerList.setBounds(12, 35, 127, 192);
-		mainFrame.getContentPane().add(ownerList);
+		getContentPane().add(ownerList);
 		
 		JLabel ownerListLabel = new JLabel("Owners");
 		ownerListLabel.setBounds(12, 12, 70, 15);
-		mainFrame.getContentPane().add(ownerListLabel);
+		getContentPane().add(ownerListLabel);
 		
 		JButton btnAddOwner = new JButton("Add Owner");
 		btnAddOwner.addActionListener(new ActionListener() {
@@ -61,7 +60,7 @@ public class AppWindow extends Window{
 			}
 		});
 		btnAddOwner.setBounds(151, 31, 117, 25);
-		mainFrame.getContentPane().add(btnAddOwner);
+		getContentPane().add(btnAddOwner);
 		
 		btnDeleteOwner = new JButton("Delete Owner");
 		btnDeleteOwner.setEnabled(false);
@@ -71,7 +70,7 @@ public class AppWindow extends Window{
 			}
 		});
 		btnDeleteOwner.setBounds(151, 63, 117, 25);
-		mainFrame.getContentPane().add(btnDeleteOwner);
+		getContentPane().add(btnDeleteOwner);
 		
 		btnClose = new JButton("Close");
 		btnClose.addActionListener(new ActionListener() {
@@ -80,7 +79,7 @@ public class AppWindow extends Window{
 			}
 		});
 		btnClose.setBounds(301, 215, 117, 25);
-		mainFrame.getContentPane().add(btnClose);
+		getContentPane().add(btnClose);
 		
 		btnShow = new JButton("Show");
 		btnShow.addActionListener(new ActionListener() {
@@ -91,7 +90,7 @@ public class AppWindow extends Window{
 		});
 		btnShow.setEnabled(false);
 		btnShow.setBounds(151, 97, 117, 25);
-		mainFrame.getContentPane().add(btnShow);
+		getContentPane().add(btnShow);
 	}
 
 	public void populateOwnerList(List<String> owners){
