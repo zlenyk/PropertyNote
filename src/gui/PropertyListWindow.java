@@ -68,7 +68,8 @@ public class PropertyListWindow extends ChildWindow {
 	
 	public void populatePropertyList(List<String> owners){
 		propertiesPanel.removeAll();
-		revalidate();
+		propertiesPanel.revalidate();
+		propertiesPanel.repaint();
 		if(owners.size() > 0){
 			for(String name : owners){
 				propertiesPanel.add(new PropertyComponent(name,ownerName,this));
