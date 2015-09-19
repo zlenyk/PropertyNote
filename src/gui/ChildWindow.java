@@ -30,8 +30,15 @@ public abstract class ChildWindow extends Window{
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		initialize();
+	}
+	/**
+	 * different method than constructor because some classes
+	 * are going to override this method.
+	 */
+	protected void initialize(){
+
 		buttonPanel = new JPanel();
-		
 		closeButton = new JButton("Close");
 		closeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -41,6 +48,5 @@ public abstract class ChildWindow extends Window{
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		buttonPanel.add(closeButton);
 		contentPane.add(buttonPanel,BorderLayout.EAST);
-		
 	}
 }

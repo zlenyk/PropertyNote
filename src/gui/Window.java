@@ -23,8 +23,4 @@ public abstract class Window extends JFrame{
 		
 		dispose();
 	}
-/*	public JFrame getFrame(){
-		return mainFrame;
-	}
-*/
 }
